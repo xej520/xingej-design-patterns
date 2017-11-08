@@ -12,7 +12,7 @@ public class SingletonDemo01Test {
     // 通过反序列化的方式 来破解 单例模式
     @Test
     public void testSingletonByFanXuliehua() throws Exception {
-        SingletonDemo02 instance = SingletonDemo02.getInstance();
+        StaticInnerClass2 instance = StaticInnerClass2.getInstance();
         System.out.println(instance);
 
         // 先序列化到硬盘上
@@ -31,7 +31,7 @@ public class SingletonDemo01Test {
 
         ObjectInputStream ois = new ObjectInputStream(fis);
 
-        SingletonDemo02 singletonDemo02 = (SingletonDemo02) ois.readObject();
+        StaticInnerClass2 singletonDemo02 = (StaticInnerClass2) ois.readObject();
 
         System.out.println(singletonDemo02);
 

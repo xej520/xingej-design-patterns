@@ -8,8 +8,8 @@ public class SingleDemo01Test {
 
     @Test
     public void testSingleton() {
-        SingleDemo01 instance1 = SingleDemo01.getInstacne();
-        SingleDemo01 instance2 = SingleDemo01.getInstacne();
+        LazyMethod instance1 = LazyMethod.getInstacne();
+        LazyMethod instance2 = LazyMethod.getInstacne();
 
         System.out.println("---class--->\t" + instance1);
         System.out.println("---class--->\t" + instance2);
@@ -24,21 +24,21 @@ public class SingleDemo01Test {
     @Test
     public void testSingletonByPojie() throws Exception {
 
-        SingleDemo01 instance1 = SingleDemo01.getInstacne();
-        SingleDemo01 instance2 = SingleDemo01.getInstacne();
+        LazyMethod instance1 = LazyMethod.getInstacne();
+        LazyMethod instance2 = LazyMethod.getInstacne();
 
         System.out.println("---class--->\t" + instance1);
         System.out.println("---class--->\t" + instance2);
 
         @SuppressWarnings("unchecked")
-        Class<SingleDemo01> clazz = (Class<SingleDemo01>) Class
+        Class<LazyMethod> clazz = (Class<LazyMethod>) Class
                 .forName("com.xingej.patterns.singleton.example2.SingleDemo01");
 
-        Constructor<SingleDemo01> constructor = clazz.getDeclaredConstructor(null);
+        Constructor<LazyMethod> constructor = clazz.getDeclaredConstructor(null);
 
         constructor.setAccessible(true);
 
-        SingleDemo01 instance1a = constructor.newInstance(null);
+        LazyMethod instance1a = constructor.newInstance(null);
         // SingleDemo01 instance2a = constructor.newInstance(null);
 
         System.out.println("---class--->\t" + instance1a);
@@ -50,23 +50,23 @@ public class SingleDemo01Test {
     @Test
     public void testSingletonByPojie2() throws Exception {
 
-        SingleDemo02 instance1 = SingleDemo02.getInstacne();
-        SingleDemo02 instance2 = SingleDemo02.getInstacne();
+        LazyMethod2 instance1 = LazyMethod2.getInstacne();
+        LazyMethod2 instance2 = LazyMethod2.getInstacne();
 
         System.out.println("---class--->\t" + instance1);
         System.out.println("---class--->\t" + instance2);
 
         @SuppressWarnings("unchecked")
-        Class<SingleDemo02> clazz = (Class<SingleDemo02>) Class
+        Class<LazyMethod2> clazz = (Class<LazyMethod2>) Class
                 .forName("com.xingej.patterns.singleton.example2.SingleDemo02");
 
-        Constructor<SingleDemo02> constructor = clazz.getDeclaredConstructor(null);
+        Constructor<LazyMethod2> constructor = clazz.getDeclaredConstructor(null);
 
         constructor.setAccessible(true);
 
-        SingleDemo02 instance1a = constructor.newInstance(null);
+        LazyMethod2 instance1a = constructor.newInstance(null);
 
-        SingleDemo02 instance2a = constructor.newInstance(null);
+        LazyMethod2 instance2a = constructor.newInstance(null);
 
         System.out.println("---class--2->\t" + instance1a);
 
