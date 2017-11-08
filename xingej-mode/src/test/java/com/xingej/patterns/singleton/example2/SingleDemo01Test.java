@@ -32,7 +32,7 @@ public class SingleDemo01Test {
 
         @SuppressWarnings("unchecked")
         Class<LazyMethod> clazz = (Class<LazyMethod>) Class
-                .forName("com.xingej.patterns.singleton.example2.SingleDemo01");
+                .forName("com.xingej.patterns.singleton.example2.LazyMethod");
 
         Constructor<LazyMethod> constructor = clazz.getDeclaredConstructor(null);
 
