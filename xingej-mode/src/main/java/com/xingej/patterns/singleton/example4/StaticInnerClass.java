@@ -9,17 +9,17 @@ package com.xingej.patterns.singleton.example4;
  * 
  * @author erjun 2017年11月8日 上午11:38:31
  */
-public class SingletonDemo01 {
+public class StaticInnerClass {
     // 静态内部类，并不会立即加载的，只有调用时才加载的
     private static class SingletonClassInstance {
-        private static final SingletonDemo01 instance = new SingletonDemo01();
+        private static final StaticInnerClass instance = new StaticInnerClass();
     }
 
-    private SingletonDemo01() {
+    private StaticInnerClass() {
 
     }
 
-    public static SingletonDemo01 getInstance() {
+    public static StaticInnerClass getInstance() {
         return SingletonClassInstance.instance;
     }
 

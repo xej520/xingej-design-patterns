@@ -8,7 +8,7 @@ package com.xingej.patterns.singleton.example5;
  * 
  * @author erjun 2017年11月8日 上午11:53:40
  */
-public enum SingletoDemo01 {
+public enum EnumMethod {
     INSTANCE;
 
     public void show() {
@@ -17,8 +17,8 @@ public enum SingletoDemo01 {
 
     // 测试用例
     public static void main(String[] args) {
-        SingletoDemo01 aDemo01 = SingletoDemo01.INSTANCE;
-        SingletoDemo01 bDemo01 = SingletoDemo01.INSTANCE;
+        EnumMethod aDemo01 = EnumMethod.INSTANCE;
+        EnumMethod bDemo01 = EnumMethod.INSTANCE;
 
         // 校验是否是同一个对象
         System.out.println(aDemo01 == bDemo01);

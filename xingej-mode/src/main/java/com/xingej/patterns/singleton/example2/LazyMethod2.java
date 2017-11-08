@@ -8,11 +8,11 @@ package com.xingej.patterns.singleton.example2;
  * @author erjun 2017年11月8日 下午1:54:50
  */
 
-public class SingleDemo02 {
-    private static SingleDemo02 instance;
+public class LazyMethod2 {
+    private static LazyMethod2 instance;
 
     // 先类加载，后创建对象，也就是说 先加载类，后调用这个构造方法
-    private SingleDemo02() {
+    private LazyMethod2() {
         System.out.println("----------1----------------");
         // 添加下面的判断，这样，第一次创建对象时不会报错，第二次创建对象时会报错的
         if (null != instance) {
@@ -22,10 +22,10 @@ public class SingleDemo02 {
     }
 
     // 方法同步，调用效率低
-    public static synchronized SingleDemo02 getInstacne() {
+    public static synchronized LazyMethod2 getInstacne() {
         if (null == instance) {
             // 只有使用时，才调用
-            instance = new SingleDemo02();
+            instance = new LazyMethod2();
         }
 
         return instance;

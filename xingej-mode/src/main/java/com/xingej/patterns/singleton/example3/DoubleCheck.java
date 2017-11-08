@@ -5,10 +5,10 @@ package com.xingej.patterns.singleton.example3;
  * 
  * @author erjun 2017年11月7日 下午8:08:43
  */
-public class SingleDemo01 {
-    private static SingleDemo01 instance;
+public class DoubleCheck {
+    private static DoubleCheck instance;
 
-    private SingleDemo01() {
+    private DoubleCheck() {
 
     }
 
@@ -16,11 +16,11 @@ public class SingleDemo01 {
     // 但是
     // 由于编译器优化原因和JVM底层内部模型元素，偶然会出问题。
     // -------不建议使用------
-    public static SingleDemo01 getInstance() {
+    public static DoubleCheck getInstance() {
         if (null == instance) {
-            synchronized (SingleDemo01.class) {
+            synchronized (DoubleCheck.class) {
                 if (null == instance) {
-                    return instance = new SingleDemo01();
+                    return instance = new DoubleCheck();
                 }
             }
         }
