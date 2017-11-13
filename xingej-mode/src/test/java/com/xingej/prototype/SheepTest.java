@@ -49,4 +49,41 @@ public class SheepTest {
 
     }
 
+    @Test
+    public void testDeepReplication() throws CloneNotSupportedException {
+        Sheep2 sheep = new Sheep2();
+
+        Date birthday = new Date();
+        sheep.setName("多利");
+
+        sheep.setBirthday(birthday);
+
+        // 开始 深复制
+        Sheep2 sheep2 = (Sheep2) sheep.clone();
+
+        System.out.println("---sheep1----:\t" + sheep);
+        System.out.println("---sheep1---name--" + sheep.getName());
+        System.out.println("---sheep1---birthday--" + sheep.getBirthday());
+
+        // 修改原对象的时间，
+        // 1、查看，原对象的时间，是否变化了
+        // 2、克隆对象的时间，是否变化了，是否是最新的时间
+        birthday.setTime(234324324342L);
+
+        System.out.println("---sheep1---birthday--" + sheep.getBirthday());
+
+        sheep2.setName("猫");
+        System.out.println("---sheep2----:\t" + sheep2);
+        System.out.println("---sheep2---name---:\t" + sheep2.getName());
+
+        // 观察时间，是否与 原对象的旧时间 是否一样，
+        // 一样的话，说明，是深复制，
+        System.out.println("---sheep2---birthday--:\t" + sheep2.getBirthday());
+
+        // 总结
+        // 修改了原对象的时间 后
+        // 1、拷贝对象的时间，并没有发生变化，还是旧的对象时间
+        // 2、原对象的时间，发生了变化
+    }
+
 }
