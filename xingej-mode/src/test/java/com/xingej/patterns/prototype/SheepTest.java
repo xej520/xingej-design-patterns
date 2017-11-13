@@ -1,4 +1,4 @@
-package com.xingej.prototype;
+package com.xingej.patterns.prototype;
 
 import static org.junit.Assert.fail;
 
