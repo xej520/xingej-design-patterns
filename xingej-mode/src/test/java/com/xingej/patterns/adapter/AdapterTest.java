@@ -56,4 +56,13 @@ public class AdapterTest {
 
     }
 
+    // 测试调用方，通过对象的组合的方式，来获取适配器
+    // 也可以通过传入参数的方式来获取
+    @Test
+    public void testByLaptop() {
+        Laptop2 laptop2 = new Laptop2(new Adapter1());
+
+        laptop2.processKey();
+    }
+
 }
