@@ -1,4 +1,4 @@
-package com.xingej.patterns.adapter;
+package com.xingej.patterns.structuralType.adapter;
 
 /**
  * 练习：适配器模式

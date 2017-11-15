@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example4;
+package com.xingej.patterns.creationType.singleton.example4;
 
 import java.io.Serializable;
 

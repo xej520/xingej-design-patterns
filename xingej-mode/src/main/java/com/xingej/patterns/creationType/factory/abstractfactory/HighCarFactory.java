@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.abstractfactory;
+package com.xingej.patterns.creationType.factory.abstractfactory;
 
 public class HighCarFactory implements CarFactory {
 

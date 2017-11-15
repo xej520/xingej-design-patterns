@@ -1,4 +1,4 @@
-package com.xingej.patterns.prototype;
+package com.xingej.patterns.creationType.prototype;
 
 import java.util.Date;
 
@@ -16,7 +16,7 @@ public class Sheep2 implements Cloneable {
     private Date birthday;
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         // 第一，先调用父类的clone方法，实现浅复制
         Object object = super.clone();
 

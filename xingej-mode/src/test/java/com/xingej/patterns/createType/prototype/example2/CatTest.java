@@ -1,4 +1,4 @@
-package com.xingej.patterns.prototype.example2;
+package com.xingej.patterns.createType.prototype.example2;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,6 +7,8 @@ import java.io.ObjectOutputStream;
 import java.util.Date;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.prototype.example2.Cat;
 
 /**
  * 测试，使用序列化和反序列化的方式来实现 深复制，或者说 深克隆

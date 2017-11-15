@@ -1,4 +1,4 @@
-package com.xingej.patterns.builder;
+package com.xingej.patterns.creationType.builder;
 
 /**
  * 定义构建者 接口，

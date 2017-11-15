@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.factoryfunction;
+package com.xingej.patterns.creationType.factory.factoryfunction;
 
 /**
  * 创建奥迪类

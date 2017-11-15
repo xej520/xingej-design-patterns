@@ -1,4 +1,4 @@
-package com.xingej.patterns.adapter;
+package com.xingej.patterns.structuralType.adapter;
 
 /**
  * 角色：调用方

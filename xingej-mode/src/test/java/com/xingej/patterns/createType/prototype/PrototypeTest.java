@@ -1,4 +1,4 @@
-package com.xingej.patterns.prototype;
+package com.xingej.patterns.createType.prototype;
 
 import org.junit.Test;
 

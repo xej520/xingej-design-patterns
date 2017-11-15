@@ -1,8 +1,11 @@
-package com.xingej.patterns.singleton.example2;
+package com.xingej.patterns.createType.singleton.example2;
 
 import java.lang.reflect.Constructor;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.singleton.example2.LazyMethod;
+import com.xingej.patterns.creationType.singleton.example2.LazyMethod2;
 
 public class SingleDemo01Test {
 

@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.abstractfactory;
+package com.xingej.patterns.creationType.factory.abstractfactory;
 
 /**
  * 定义了一批产品组

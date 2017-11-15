@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example4;
+package com.xingej.patterns.createType.singleton.example4;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,6 +6,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.singleton.example4.StaticInnerClass2;
 
 public class SingletonDemo01Test {
 

@@ -1,6 +1,10 @@
-package com.xingej.patterns.factory.factoryfunction;
+package com.xingej.patterns.createType.factory.factoryfunction;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.factory.factoryfunction.AudiCarFactory;
+import com.xingej.patterns.creationType.factory.factoryfunction.BMWCarFactory;
+import com.xingej.patterns.creationType.factory.factoryfunction.Car;
 
 /**
  * 工厂方法模式测试

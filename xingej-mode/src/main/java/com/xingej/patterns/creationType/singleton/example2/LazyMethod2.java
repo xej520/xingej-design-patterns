@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example2;
+package com.xingej.patterns.creationType.singleton.example2;
 
 /**
  * 

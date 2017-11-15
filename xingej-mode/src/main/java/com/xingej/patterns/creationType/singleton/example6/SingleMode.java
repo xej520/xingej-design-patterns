@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example6;
+package com.xingej.patterns.creationType.singleton.example6;
 
 import java.io.IOException;
 import java.io.InputStream;

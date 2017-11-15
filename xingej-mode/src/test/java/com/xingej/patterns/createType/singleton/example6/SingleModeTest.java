@@ -1,6 +1,8 @@
-package com.xingej.patterns.singleton.example6;
+package com.xingej.patterns.createType.singleton.example6;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.singleton.example6.SingleMode;
 
 public class SingleModeTest {
 

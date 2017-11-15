@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.simplefactory;
+package com.xingej.patterns.creationType.factory.simplefactory;
 
 /**
  * 创建一个简单工厂。简单工厂问题：不能很好的扩展，每次增加新的需求，还要修改代码

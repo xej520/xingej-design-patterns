@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example5;
+package com.xingej.patterns.creationType.singleton.example5;
 
 /**
  * 枚举的方式 实现 单例模式

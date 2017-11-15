@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example3;
+package com.xingej.patterns.creationType.singleton.example3;
 
 /**
  * 双重检测实现单例模式 //-------不建议使用------此方法哦

@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.factoryfunction;
+package com.xingej.patterns.creationType.factory.factoryfunction;
 
 /**
  * 专门为Audi车 创建一个工厂，专门用来创建Audi

@@ -1,14 +1,14 @@
-package com.xingej.patterns.singleton;
+package com.xingej.patterns.createType.singleton;
 
 import java.util.concurrent.CountDownLatch;
 
 import org.junit.Test;
 
-import com.xingej.patterns.singleton.example1.HungryMethod;
-import com.xingej.patterns.singleton.example2.LazyMethod;
-import com.xingej.patterns.singleton.example3.DoubleCheck;
-import com.xingej.patterns.singleton.example4.StaticInnerClass;
-import com.xingej.patterns.singleton.example5.EnumMethod;
+import com.xingej.patterns.creationType.singleton.example1.HungryMethod;
+import com.xingej.patterns.creationType.singleton.example2.LazyMethod;
+import com.xingej.patterns.creationType.singleton.example3.DoubleCheck;
+import com.xingej.patterns.creationType.singleton.example4.StaticInnerClass;
+import com.xingej.patterns.creationType.singleton.example5.EnumMethod;
 
 /**
  * 多线程方式来测试5种单例模式的效率

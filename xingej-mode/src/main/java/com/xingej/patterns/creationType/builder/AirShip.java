@@ -1,4 +1,4 @@
-package com.xingej.patterns.builder;
+package com.xingej.patterns.creationType.builder;
 
 public class AirShip {
     private OrbitalModule orbitalModule; // 轨道舱

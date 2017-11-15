@@ -1,10 +1,13 @@
-package com.xingej.patterns.prototype;
+package com.xingej.patterns.createType.prototype;
 
 import static org.junit.Assert.fail;
 
 import java.util.Date;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.prototype.Sheep;
+import com.xingej.patterns.creationType.prototype.Sheep2;
 
 /**
  * 原型模型 测试

@@ -1,6 +1,11 @@
-package com.xingej.patterns.factory.simplefactory;
+package com.xingej.patterns.createType.factory.simplefactory;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.factory.simplefactory.Audi;
+import com.xingej.patterns.creationType.factory.simplefactory.BMW;
+import com.xingej.patterns.creationType.factory.simplefactory.Car;
+import com.xingej.patterns.creationType.factory.simplefactory.CarFactory;
 
 /**
  * 工厂模式测试

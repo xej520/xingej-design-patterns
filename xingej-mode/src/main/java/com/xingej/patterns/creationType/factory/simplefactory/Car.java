@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.simplefactory;
+package com.xingej.patterns.creationType.factory.simplefactory;
 
 /**
  * 定义一个接口

@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example4;
+package com.xingej.patterns.creationType.singleton.example4;
 
 /**
  * 静态内部类方式创建单例模式

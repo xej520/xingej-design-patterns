@@ -1,6 +1,12 @@
-package com.xingej.patterns.factory.abstractfactory;
+package com.xingej.patterns.createType.factory.abstractfactory;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.factory.abstractfactory.CarFactory;
+import com.xingej.patterns.creationType.factory.abstractfactory.Engine;
+import com.xingej.patterns.creationType.factory.abstractfactory.HighCarFactory;
+import com.xingej.patterns.creationType.factory.abstractfactory.Seat;
+import com.xingej.patterns.creationType.factory.abstractfactory.Wheel;
 
 public class AbstractFactoryTest {
 

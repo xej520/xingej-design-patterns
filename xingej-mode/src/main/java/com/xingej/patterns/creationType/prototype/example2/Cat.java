@@ -1,4 +1,4 @@
-package com.xingej.patterns.prototype.example2;
+package com.xingej.patterns.creationType.prototype.example2;
 
 import java.io.Serializable;
 import java.util.Date;

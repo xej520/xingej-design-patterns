@@ -1,6 +1,12 @@
-package com.xingej.patterns.builder;
+package com.xingej.patterns.createType.builder;
 
 import org.junit.Test;
+
+import com.xingej.patterns.creationType.builder.AirShip;
+import com.xingej.patterns.creationType.builder.AirShipBuilder;
+import com.xingej.patterns.creationType.builder.AirShipDirector;
+import com.xingej.patterns.creationType.builder.BeijingAirShipBuilder;
+import com.xingej.patterns.creationType.builder.BeijingAirShipDirector;
 
 /**
  * 建造者模式 测试

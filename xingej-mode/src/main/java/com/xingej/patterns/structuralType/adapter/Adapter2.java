@@ -1,4 +1,4 @@
-package com.xingej.patterns.adapter;
+package com.xingej.patterns.structuralType.adapter;
 
 /**
  * 适配器(对象组合方式的适配器)

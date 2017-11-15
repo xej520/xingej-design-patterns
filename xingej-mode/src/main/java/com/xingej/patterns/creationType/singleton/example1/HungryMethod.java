@@ -1,4 +1,4 @@
-package com.xingej.patterns.singleton.example1;
+package com.xingej.patterns.creationType.singleton.example1;
 
 /**
  * 单例模式：饿汉式

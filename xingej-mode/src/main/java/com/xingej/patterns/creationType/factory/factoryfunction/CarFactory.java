@@ -1,4 +1,4 @@
-package com.xingej.patterns.factory.factoryfunction;
+package com.xingej.patterns.creationType.factory.factoryfunction;
 
 /**
  * 工厂方法模式，
