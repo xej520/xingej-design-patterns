@@ -32,4 +32,29 @@ public class RCMTest {
 
     }
 
+    // 扩展性测试，
+    // 假如，增加一个副总经理
+    @Test
+    public void test2() {
+        Leader director = new Director("张三");
+        Leader manager = new Manager("李四");
+        Leader viceGeneralManager = new ViceGeneralManager("二麻子");
+        Leader generalManager = new GeneralManager("王五 ");
+
+        // 设定 组织责任链对象的关系
+        director.setNextLeader(manager);
+        manager.setNextLeader(viceGeneralManager);
+        viceGeneralManager.setNextLeader(generalManager);
+
+        // 开始请假操作
+        LeaveRequest reql = new LeaveRequest("Jack", 2, "生病!");
+        LeaveRequest reql2 = new LeaveRequest("Tom", 15, "去杭州旅游");
+        LeaveRequest reql3 = new LeaveRequest("Lili", 25, "购物!");
+
+        director.handleRequest(reql);
+        director.handleRequest(reql2);
+        director.handleRequest(reql3);
+
+    }
+
 }
