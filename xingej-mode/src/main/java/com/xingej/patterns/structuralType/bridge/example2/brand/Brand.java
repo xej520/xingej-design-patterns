@@ -17,6 +17,9 @@ package com.xingej.patterns.structuralType.bridge.example2.brand;
  * 
  * <<可扩展性>>： 直接添加子类就可以了。不用修改源代码的;比方说，新增一个IPAD，直接继承compute就可以了
  * 
+ * 
+ * <<桥接模式的本质>>： 将抽象和实现 分离
+ * 
  * @author erjun 2017年11月16日 下午5:39:03
  */
 public interface Brand {
