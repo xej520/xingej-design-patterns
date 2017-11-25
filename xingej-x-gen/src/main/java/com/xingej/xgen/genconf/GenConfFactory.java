@@ -16,6 +16,7 @@ public class GenConfFactory {
     // 以及浪费内存空间
     public static GenConfEbi createGenConfEbi() {
 
-        return new GenConfEbo();
+        // 改成单例模式方式获取
+        return GenConfEbo.getInstance();
     }
 }
