@@ -2,28 +2,31 @@ package com.xingej.xgen.genconf;
 
 import java.util.Map;
 
+import com.xingej.xgen.genconf.confmanger.ConfManager;
 import com.xingej.xgen.genconf.vo.GenConfModel;
 import com.xingej.xgen.genconf.vo.ModuleConfModel;
 
 //业务实现对象
+//负责完成配置管理模块的业务功能
 public class GenConfEbo implements GenConfEbi {
 
     // 获取数据的
     @Override
     public GenConfModel getGenConf() {
         // 获取相应的配置数据
-        return null;
+        return ConfManager.getInstance().getGetConf();
     }
 
     @Override
     public Map<String, ModuleConfModel> getMapModuleConf() {
 
         // 获取相应的配置数据
-        return null;
+        return ConfManager.getInstance().getMapModuleConf();
     }
 
     // 缓存数据的
-    private GenConfModel gcm = null;
+    // ConfManager 类里，存储缓存，不在GenConfEbo类进行了
+    // private GenConfModel gcm = null;
 
     // ------------------下面是---单例模式---代码------
     private GenConfEbo() {
