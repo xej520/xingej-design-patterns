@@ -41,4 +41,15 @@ public class GenConfModel {
         this.mapContants = mapContants;
     }
 
+    // -------做一些业务代码-----
+    public ThemeModel getThemeById(String themeId) {
+        for (ThemeModel tm : this.themes) {
+            if (tm.getId().equals(themeId)) {
+                return tm;
+            }
+        }
+
+        return new ThemeModel();
+    }
+
 }
