@@ -6,6 +6,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -33,4 +34,61 @@ public class ReadAppXmlTest {
         System.out.println("----nodeName-----:\t" + item.getNodeName());
         System.out.println("----nodeValue-----:\t" + item.getNodeValue());
     }
+
+    @Test
+    public void testDriverClass() throws Exception {
+        NodeList jdbc = doc.getElementsByTagName("jdbc");
+
+        NodeList driverClass = ((Element) jdbc.item(0)).getElementsByTagName("driver-class");
+        Node item = driverClass.item(0);
+        System.out.println("---driverClass---nodeValue---:\t" + item.getFirstChild().getNodeValue());
+
+    }
+
+    @Test
+    public void testURL() throws Exception {
+        NodeList jdbc = doc.getElementsByTagName("jdbc");
+
+        NodeList driverClass = ((Element) jdbc.item(0)).getElementsByTagName("url");
+        Node item = driverClass.item(0);
+        System.out.println("---url---nodeValue---:\t" + item.getFirstChild().getNodeValue());
+
+    }
+
+    @Test
+    public void testUser() throws Exception {
+        NodeList jdbc = doc.getElementsByTagName("jdbc");
+
+        NodeList driverClass = ((Element) jdbc.item(0)).getElementsByTagName("user");
+        Node item = driverClass.item(0);
+        System.out.println("---user---nodeValue---:\t" + item.getFirstChild().getNodeValue());
+
+    }
+
+    @Test
+    public void testPassword() throws Exception {
+        NodeList jdbc = doc.getElementsByTagName("jdbc");
+
+        NodeList driverClass = ((Element) jdbc.item(0)).getElementsByTagName("password");
+        Node item = driverClass.item(0);
+        System.out.println("---password---nodeValue---:\t" + item.getFirstChild().getNodeValue());
+
+    }
+
+    @Test
+    public void testApplicationXml() throws Exception {
+        NodeList jdbc = doc.getElementsByTagName("application-xml");
+
+        System.out.println("---password---nodeValue---:\t" + jdbc.item(0).getFirstChild().getNodeValue());
+
+    }
+
+    @Test
+    public void testRoot() throws Exception {
+        NodeList root = doc.getElementsByTagName("root");
+
+        System.out.println("---password---nodeValue---:\t" + root.item(0));
+
+    }
+
 }
