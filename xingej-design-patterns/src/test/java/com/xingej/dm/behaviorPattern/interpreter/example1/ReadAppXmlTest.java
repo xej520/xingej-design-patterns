@@ -20,7 +20,7 @@ public class ReadAppXmlTest {
         // 获得一个DocumentBuilder对象，这个对象代表了具体的DOM解析器
         DocumentBuilder builder = factory.newDocumentBuilder();
         // 得到一个表示XML文档的Document对象
-        doc = builder.parse("src/main/resources/App.xml");
+        doc = builder.parse("src/main/resources/App2.xml");
         // 去掉XML文档中作为格式化内容的空白而映射在DOM树中的不必要的Text Node对象
         doc.normalize();
     }
@@ -89,6 +89,30 @@ public class ReadAppXmlTest {
 
         System.out.println("---password---nodeValue---:\t" + root.item(0));
 
+    }
+
+    // ---------------------测试读取App2.xml配置文件------------------
+
+    @Test
+    public void testQuery() throws Exception {
+        NodeList nodes = doc.getElementsByTagName("spring-default");
+        System.out.println("----length---:\t" + nodes.getLength());
+
+        NodeList appXmlsNode = ((Element) nodes.item(0)).getElementsByTagName("application-xmls");
+        System.out.println("----length----:\t" + appXmlsNode.getLength());
+        System.out.println("----length----:\t" + ((Element) nodes.item(0)).getNodeType());
+
+        NodeList appXmlNode = ((Element) appXmlsNode.item(0)).getElementsByTagName("application-xml");
+        System.out.println("----length----:\t" + appXmlNode.getLength());
+
+        for (int i = 0; i < appXmlNode.getLength(); i++) {
+            Node firstChild = appXmlNode.item(i).getFirstChild();
+            System.out.println("---firstChild--parentNode---:\t" + firstChild.getParentNode());
+            System.out.println("---firstChild--nodeType---:\t" + firstChild.getNodeType());
+            System.out.println("---firstChild--NodeName---:\t" + firstChild.getNodeName());
+            System.out.println("---firstChild--NodeValue---:\t" + firstChild.getNodeValue());
+            System.out.println("---firstChild--BaseURI---:\t" + firstChild.getBaseURI());
+        }
     }
 
 }
