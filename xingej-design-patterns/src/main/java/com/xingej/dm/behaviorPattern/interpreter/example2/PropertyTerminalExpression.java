@@ -19,6 +19,9 @@ public class PropertyTerminalExpression extends ReadXmlExpression {
     @Override
     public String[] interpret(Context context) {
         String[] ss = new String[1];
+
+        System.out.println("----前一个元素为:\t" + context.getPreEle().getTagName());
+
         ss[0] = context.getPreEle().getAttribute(this.propName);
 
         return ss;
