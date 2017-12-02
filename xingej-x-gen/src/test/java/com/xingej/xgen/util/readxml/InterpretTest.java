@@ -94,4 +94,39 @@ public class InterpretTest {
 
     }
 
+    // 测试，获取多个属性的值
+    @Test
+    public void testMulProperties() throws Exception {
+        // 构建元素对象
+        ElementExpression genConf = new ElementExpression("GenConf", "");
+        ElementExpression needGens = new ElementExpression("NeedGens", "");
+        ElementExpression needGen = new ElementExpression("NeedGen", "");
+        ElementExpression params = new ElementExpression("Params", "");
+
+        ElementsExpression param = new ElementsExpression("Param", "");
+
+        // 你要取的是，多个id的值，一个id属性对应一个Param
+        // 因此，上面用的是ElementsExpression，多个元素作为非终结符
+        PropertysTerminalExpression ids = new PropertysTerminalExpression("id");
+
+        // 构建抽象语法树
+        genConf.addEle(needGens);
+        needGens.addEle(needGen);
+        needGen.addEle(params);
+        params.addEle(param);
+        param.addEle(ids);
+
+        // 创建下文对象
+        Context context = Context.getInstance("xgenconfxml/GenConf.xml");
+
+        // 开始解析
+        String[] ss = genConf.interpret(context);
+
+        // 打印结果
+        for (String s : ss) {
+            System.out.println("---->:\t" + s);
+        }
+
+    }
+
 }
