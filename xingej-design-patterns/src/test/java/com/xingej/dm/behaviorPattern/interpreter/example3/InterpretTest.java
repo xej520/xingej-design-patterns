@@ -15,6 +15,7 @@ public class InterpretTest {
     @Before
     public void testInit() throws Exception {
         // 准备上下文
+        // 这是绝对路径
         context = new Context("src/main/resources/InterpreterTest.xml");
     }
 
