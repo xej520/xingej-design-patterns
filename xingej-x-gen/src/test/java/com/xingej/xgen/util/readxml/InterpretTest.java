@@ -129,4 +129,36 @@ public class InterpretTest {
 
     }
 
+    // 测试，添加条件测试
+    @Test
+    public void testCondition() throws Exception {
+        // 构建元素对象
+        ElementExpression genConf = new ElementExpression("GenConf", "");
+        ElementExpression needGens = new ElementExpression("NeedGens", "");
+        ElementExpression needGen = new ElementExpression("NeedGen", "");
+        ElementExpression params = new ElementExpression("Params", "");
+
+        // 添加，限制条件id=fileName2
+        // 也就是说，只获取id= fileName2的值
+        ElementsTerminalExpression param = new ElementsTerminalExpression("Param", "id=fileName2");
+
+        // 构建抽象语法树
+        genConf.addEle(needGens);
+        needGens.addEle(needGen);
+        needGen.addEle(params);
+        params.addEle(param);
+
+        // 创建下文对象
+        Context context = Context.getInstance("xgenconfxml/GenConf.xml");
+
+        // 开始解析
+        String[] ss = genConf.interpret(context);
+
+        // 打印结果
+        for (String s : ss) {
+            System.out.println("---->:\t" + s);
+        }
+
+    }
+
 }
