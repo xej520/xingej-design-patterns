@@ -6,38 +6,21 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-public class ElementsExpression extends ReadXmlExpression {
+public class ElementsTerminalExpression extends ReadXmlExpression {
 
-    // 用来记录/存储当前元素的子ReadXmlExpression元素
-    private List<ReadXmlExpression> eles = new ArrayList<>();
-
-    // 元素的名称
     private String eleName;
 
-    // 判断的条件，就是 [id=e1]
-    // root/a/e$[id=e1]/f
-    private String condition = "";
+    private String condition;
 
-    public ElementsExpression(String eleName, String condition) {
+    public ElementsTerminalExpression(String eleName, String condition) {
+        super();
         this.eleName = eleName;
         this.condition = condition;
     }
 
-    public void addEle(ReadXmlExpression ele) {
-        this.eles.add(ele);
-    }
-
-    public boolean removeEle(ReadXmlExpression ele) {
-        this.eles.remove(ele);
-        return true;
-    }
-
-    public void removeAllEles() {
-        this.eles.clear();
-    }
-
     @Override
     public String[] interpret(Context context) {
+        // 1、获取跟自己名称，相同的多个元素
         // 1、维护父级节点记录
         List<Element> parentEles = context.getParentEles();
         // 获取当前元素，多个
@@ -46,7 +29,8 @@ public class ElementsExpression extends ReadXmlExpression {
         for (Element parentElement : parentEles) {
             nowEles.addAll(context.getNowFiles(parentElement, eleName));
         }
-        // 判断条件
+
+        // 2、判断这个元素是否满足条件
         Iterator<Element> it = nowEles.iterator();
         while (it.hasNext()) {
             Element ele = it.next();
@@ -55,16 +39,20 @@ public class ElementsExpression extends ReadXmlExpression {
                 it.remove();
             }
         }
-        // 设置父节点
-        context.setParentEles(nowEles);
 
-        // 2、循环解释子元素
-        String[] ss = null;
+        // 3、获取这个元素的值
+        String[] ss = new String[nowEles.size()];
 
-        for (ReadXmlExpression tempEle : eles) {
-            ss = tempEle.interpret(context);
+        for (int i = 0; i < ss.length; i++) {
+            Element ele = nowEles.get(i);
+
+            if (null != ele.getFirstChild()) {
+                ss[i] = ele.getFirstChild().getNodeValue();
+            } else {
+                ss[i] = "";
+            }
+
         }
-
         return ss;
     }
 

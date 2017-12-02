@@ -69,4 +69,29 @@ public class InterpretTest {
         System.out.println("---->:\t" + ss[0]);
     }
 
+    // 测试，获取多个相同元素的值
+    @Test
+    public void testMulElement() throws Exception {
+        // 构建元素对象
+        ElementExpression genConf = new ElementExpression("GenConf", "");
+        ElementExpression constants = new ElementExpression("Constants", "");
+        ElementsTerminalExpression constant = new ElementsTerminalExpression("Constant", "");
+
+        // 构建抽象语法树
+        genConf.addEle(constants);
+        constants.addEle(constant);
+
+        // 创建下文对象
+        Context context = Context.getInstance("xgenconfxml/GenConf.xml");
+
+        // 开始解析
+        String[] ss = genConf.interpret(context);
+
+        // 打印结果
+        for (String s : ss) {
+            System.out.println("---->:\t" + s);
+        }
+
+    }
+
 }
