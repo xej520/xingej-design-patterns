@@ -1,5 +1,6 @@
 package com.xingej.xgen.util.readxml;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,8 @@ public class Parser {
     private static final String DOLLAR = "$";
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
+    // 存储的是，按照分解的先后顺序的元素名称
+    private static final List<String> listEle = null;
 
     // 构建工具类，
     // 构造方法私有化，不允许外界创建对象
@@ -59,6 +62,8 @@ public class Parser {
      * @return
      */
     private static Map<String, ParseModel> parseMapPath(String expr) {
+        listEle = new ArrayList<>();
+
         // root/a/b/c.name
         StringTokenizer tokenizer = new StringTokenizer(expr, BACKLASH);
 
@@ -122,6 +127,8 @@ public class Parser {
         }
 
         mapPath.put(eleName, pm);
+
+        listEle.add(eleName);
     }
 
     // ----------------------------第二大步-------------------
