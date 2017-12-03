@@ -188,6 +188,36 @@ public class Parser {
      * @return
      */
     private static ReadXmlExpression buildTree(List<ReadXmlExpression> listExpression) {
+        // 第一个对象，也就是根对象，返回去的对象
+        ReadXmlExpression retRe = null;
+        // 用来临时记录，上一个元素，作为父元素
+        ReadXmlExpression preEle = null;
+
+        for (ReadXmlExpression re : listExpression) {
+            // 说明当前元素，re是根元素
+            if (null == preEle) {
+                retRe = re; // 设置返回去的元素
+                preEle = re; // 将当前元素，设置为父元素
+            } else {
+                // 对当前元素的类型，进行判断
+                if (re instanceof ElementExpression) {
+                    ElementExpression elementExpression = (ElementExpression) preEle;
+                    // 将当前元素，添加到父元素的下面
+                    elementExpression.addEle(re);
+
+                    // 并且，将当前元素，作为前一个元素，也就是作为父级元素
+                    preEle = elementExpression;
+
+                } else if (re instanceof ElementsExpression) {
+                    ElementsExpression eles = (ElementsExpression) preEle;
+                    eles.addEle(re);
+
+                    preEle = eles;
+                }
+
+            }
+
+        }
 
         return null;
     }
