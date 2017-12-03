@@ -161,4 +161,30 @@ public class InterpretTest {
 
     }
 
+    // 测试，解析器
+    @Test
+    public void testBy解析器() throws Exception {
+
+        // 创建下文对象
+        Context context = Context.getInstance("xgenconfxml/GenConf.xml");
+
+        // String expression =
+        // "GenConf/NeedGens/NeedGen/Params/Param[id=fileName1]";
+        // String expression = "GenConf/NeedGens/NeedGen/Params/Param";
+        // String expression = "GenConf/NeedGens/NeedGen/Params/Param$";
+        // String expression = "GenConf/NeedGens/NeedGen/Params/Param$.id$";
+        String expression = "GenConf/NeedGens/NeedGen/Params/Param[id=fileName2]";
+
+        ReadXmlExpression parse = Parser.parse(expression);
+
+        // 开始解析
+        String[] ss = parse.interpret(context);
+
+        // 打印结果
+        for (String s : ss) {
+            System.out.println("---->:\t" + s);
+        }
+
+    }
+
 }

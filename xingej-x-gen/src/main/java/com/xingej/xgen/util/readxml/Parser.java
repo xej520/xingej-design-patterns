@@ -22,7 +22,7 @@ public class Parser {
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
     // 存储的是，按照分解的先后顺序的元素名称
-    private static final List<String> listEle = null;
+    private static List<String> listEle = null;
 
     // 构建工具类，
     // 构造方法私有化，不允许外界创建对象
@@ -49,7 +49,8 @@ public class Parser {
         List<ReadXmlExpression> list = mapPath2Expression(mapPath);
         // 第三大步：按照先后顺序组成为抽象语法树
         ReadXmlExpression retTree = buildTree(list);
-        return null;
+
+        return retTree;
     }
 
     // ----------------------------第一大步-------------------
@@ -121,10 +122,10 @@ public class Parser {
             pm.setCondition(eleName.substring(tempBegin + 1, tempEnd));
 
             eleName = eleName.substring(0, tempBegin);
-        } else {
-            // 名称设置
-            pm.setEleName(eleName);
         }
+
+        // 名称设置
+        pm.setEleName(eleName);
 
         mapPath.put(eleName, pm);
 
@@ -139,13 +140,14 @@ public class Parser {
      * @return
      */
     private static List<ReadXmlExpression> mapPath2Expression(Map<String, ParseModel> mapPath) {
-        List<ReadXmlExpression> result = null;
-
+        List<ReadXmlExpression> result = new ArrayList<>();
         // 一定要按照分解的先后顺序，来转换成相应的解释器对象
         for (String key : listEle) {
             ParseModel pm = mapPath.get(key);
             ReadXmlExpression obj = parseModel2ReadXmlExpression(pm);
+
             result.add(obj);
+
         }
 
         return result;
@@ -200,7 +202,7 @@ public class Parser {
                 preEle = re; // 将当前元素，设置为父元素
             } else {
                 // 对当前元素的类型，进行判断
-                if (re instanceof ElementExpression) {
+                if (preEle instanceof ElementExpression) {
                     ElementExpression elementExpression = (ElementExpression) preEle;
                     // 将当前元素，添加到父元素的下面
                     elementExpression.addEle(re);
@@ -208,7 +210,7 @@ public class Parser {
                     // 并且，将当前元素，作为前一个元素，也就是作为父级元素
                     preEle = elementExpression;
 
-                } else if (re instanceof ElementsExpression) {
+                } else if (preEle instanceof ElementsExpression) {
                     ElementsExpression eles = (ElementsExpression) preEle;
                     eles.addEle(re);
 
@@ -219,7 +221,7 @@ public class Parser {
 
         }
 
-        return null;
+        return retRe;
     }
 
 }
