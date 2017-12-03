@@ -139,8 +139,44 @@ public class Parser {
      * @return
      */
     private static List<ReadXmlExpression> mapPath2Expression(Map<String, ParseModel> mapPath) {
+        List<ReadXmlExpression> result = null;
 
-        return null;
+        // 一定要按照分解的先后顺序，来转换成相应的解释器对象
+        for (String key : listEle) {
+            ParseModel pm = mapPath.get(key);
+            ReadXmlExpression obj = parseModel2ReadXmlExpression(pm);
+            result.add(obj);
+        }
+
+        return result;
+    }
+
+    private static ReadXmlExpression parseModel2ReadXmlExpression(ParseModel pm) {
+        ReadXmlExpression obj = null;
+
+        if (!pm.isEnd()) {
+            if (pm.isSingleValue()) { // 非结尾的，就是单个元素的非终结符
+                obj = new ElementExpression(pm.getEleName(), pm.getCondition());
+            } else {
+                obj = new ElementsExpression(pm.getEleName(), pm.getCondition());
+            }
+        } else if (pm.isPropertyValue()) {
+
+            if (pm.isSingleValue()) {// 单个属性结尾
+                obj = new PropertyTerminalExpression(pm.getEleName());
+            } else {
+                obj = new PropertysTerminalExpression(pm.getEleName());
+            }
+
+        } else {
+            if (pm.isSingleValue()) {// 单个属性结尾
+                obj = new ElementTerminalExpression(pm.getEleName(), pm.getCondition());
+            } else {
+                obj = new ElementsTerminalExpression(pm.getEleName(), pm.getCondition());
+            }
+        }
+
+        return obj;
     }
 
     // ----------------------------第三大步-------------------
