@@ -55,6 +55,8 @@ public class ParserWithMemento {
      */
     // 通过备忘录模式，进行解析
     public static ReadXmlExpression parseByMemento(String expr) {
+        ReadXmlExpression retObj = null;
+
         // 1：应该获取备忘录对象
         ParseMemento memento = ParseCaretaker.getInstance().retriveMemento();
         // 2:从备忘录中获取数据
@@ -78,15 +80,19 @@ public class ParserWithMemento {
                 needParseExpr = "";
             }
         }
-        // 5:真正解析剩下的需要解析的String
+        // 5:真正解析剩下的需要解析的String 、把两个部分的抽象语法树合并起来
 
         if (needParseExpr.trim().length() > 0) {
-            ReadXmlExpression re = parse(needParseExpr);
+            retObj = parse(needParseExpr, notParseExpre, mapRe);
+        } else {
+            // 不需要解析，直接从缓存里拿出来，就可以 了
+            retObj = mapRe.get(notParseExpre);
         }
 
-        // 6:把两个部分的抽象语法树合并起来
+        // 6：解析完了，该重新设置备忘录
+        ParseCaretaker.getInstance().saveMemento(new MementoImpl(mapRe));
 
-        return null;
+        return retObj;
     }
 
     /**
@@ -124,17 +130,26 @@ public class ParserWithMemento {
      * @return 表达式对应的抽象语法树
      */
     // root/a/b/c
-    public static ReadXmlExpression parse(String expr) {
+    public static ReadXmlExpression parse(String needParseExpr, String notParseExpr,
+            Map<String, ReadXmlExpression> mapRe) {
         // 第一大步: 分解表达式，得到需要解析的元素名称和该元素对应的解析模型；
         // 就是，root 对应一个ParseModel, 你不能简简单单的写一个root,就可以了。
         // 同样，a 对应一个ParseModel
 
-        Map<String, ParseModel> mapPath = parseMapPath(expr);
+        Map<String, ParseModel> mapPath = parseMapPath(needParseExpr);
 
         // 第二大步：根据元素对应的解析模型，转换成，相应的解释器对象，如ElementExpression
-        Map<String, ReadXmlExpression> list = mapPath2Expression(mapPath);
+        Map<String, ReadXmlExpression> mapPathAndRe = mapPath2Expression(mapPath);
+
         // 第三大步：按照先后顺序组成为抽象语法树
-        ReadXmlExpression retTree = buildTree(list);
+        ReadXmlExpression prefixRE = mapRe.get(notParseExpr + BACKLASH);
+
+        // 为 了使用对象过程中，对备忘录的数据，造成影响，应该克隆一份出来，去用的；
+        if (null != prefixRE) {
+            prefixRE = (ReadXmlExpression) mapRe.get(notParseExpr + BACKLASH).clone();
+        }
+
+        ReadXmlExpression retTree = buildTree(notParseExpr, prefixRE, mapPathAndRe, mapRe);
 
         return retTree;
     }
