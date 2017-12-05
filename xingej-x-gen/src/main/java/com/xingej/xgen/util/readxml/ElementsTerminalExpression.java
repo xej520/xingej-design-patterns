@@ -56,4 +56,21 @@ public class ElementsTerminalExpression extends ReadXmlExpression {
         return ss;
     }
 
+    // 这里，仅仅实现，浅克隆，就可以了。
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Object obj = null;
+
+        try {
+            // 1、 首先， 浅克隆，是将基本类型，进行了克隆，这里如：eleName, condition
+
+            obj = super.clone();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return obj;
+    }
+
 }

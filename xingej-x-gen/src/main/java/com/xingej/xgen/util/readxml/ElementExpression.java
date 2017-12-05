@@ -34,6 +34,14 @@ public class ElementExpression extends ReadXmlExpression {
         this.eles.clear();
     }
 
+    public List<ReadXmlExpression> getEles() {
+        return eles;
+    }
+
+    public void setEles(List<ReadXmlExpression> eles) {
+        this.eles = eles;
+    }
+
     @Override
     public String[] interpret(Context context) {
         // 1、维护父级节点记录
@@ -81,4 +89,32 @@ public class ElementExpression extends ReadXmlExpression {
 
         return ss;
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        ElementExpression obj = null;
+
+        try {
+            // 1、 首先， 浅克隆，是将基本类型，进行了克隆，这里如：eleName, condition
+
+            obj = (ElementExpression) super.clone();
+
+            // 2、对eles元素，进行深度克隆
+            List<ReadXmlExpression> childRE = new ArrayList<>();
+
+            for (ReadXmlExpression re : eles) {
+
+                // childRE.add(re); //不能写成这种形式，因为，re对象，同样需要克隆
+                childRE.add((ReadXmlExpression) re.clone());
+            }
+
+            obj.setEles(childRE);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return obj;
+    }
+
 }

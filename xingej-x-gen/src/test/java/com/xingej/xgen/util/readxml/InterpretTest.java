@@ -173,7 +173,7 @@ public class InterpretTest {
         // String expression = "GenConf/NeedGens/NeedGen/Params/Param";
         // String expression = "GenConf/NeedGens/NeedGen/Params/Param$";
         // String expression = "GenConf/NeedGens/NeedGen/Params/Param$.id$";
-        String expression = "GenConf/NeedGens/NeedGen/Params/Param[id=fileName2]";
+        String expression = "GenConf/NeedGens/NeedGen/Params/Param[id=fileName1]";
 
         ReadXmlExpression parse = Parser.parse(expression);
 
