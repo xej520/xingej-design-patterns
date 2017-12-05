@@ -329,8 +329,19 @@ public class ParserWithMemento {
                 // java传的是应用，不然，前面上传到mapRe里了，
                 // 后面，很有可能将value的值修改，那么前面的路径就没有用了，
                 // 因此，这里，要使用克隆模式
-                
-                mapRe.put(prefixStr + BACKLASH+path, );
+
+                try {
+                    mapRe.put(prefixStr + BACKLASH + path, (ReadXmlExpression) retRe.clone());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // 如果前缀为空，没有匹配上的
+                try {
+                    mapRe.put(path, (ReadXmlExpression) retRe.clone());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
         }

@@ -5,7 +5,7 @@ public abstract class ReadXmlExpression implements Cloneable {
 
     // 实现浅克隆
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone() {
         Object object = null;
 
         try {

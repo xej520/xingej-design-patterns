@@ -29,7 +29,7 @@ public class PropertysTerminalExpression extends ReadXmlExpression {
 
     // 这里，仅仅实现，浅克隆，就可以了。
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone() {
         Object obj = null;
 
         try {

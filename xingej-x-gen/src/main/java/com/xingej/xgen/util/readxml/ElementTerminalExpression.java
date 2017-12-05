@@ -50,7 +50,7 @@ public class ElementTerminalExpression extends ReadXmlExpression {
 
     // 这里，仅仅实现，浅克隆，就可以了。
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone() {
         ElementTerminalExpression obj = null;
 
         try {

@@ -77,7 +77,7 @@ public class ElementsExpression extends ReadXmlExpression {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone() {
         ElementsExpression obj = null;
 
         try {
