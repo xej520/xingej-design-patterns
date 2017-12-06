@@ -187,4 +187,21 @@ public class InterpretTest {
 
     }
 
+    // 使用备忘录模式的解析器，进行测试
+    @Test
+    public void testByBeiWangLu() throws Exception {
+        long startTime = System.currentTimeMillis();
+
+        Context context = Context.getInstance("xgenconfxml/GenConf.xml");
+
+        // 如果批量读取时，使用备忘录模式肯定要比不使用 效率要搞
+        String[] ss = ParserWithMemento.parseByMemento("GenConf/NeedGens/NeedGen/Params/Param$").interpret(context);
+
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("---->:\t" + ss[0]);
+
+        System.out.println("---用时----:\t" + (endTime - startTime));
+    }
+
 }
