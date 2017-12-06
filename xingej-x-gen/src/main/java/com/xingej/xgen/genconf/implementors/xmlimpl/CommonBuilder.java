@@ -17,6 +17,9 @@ public abstract class CommonBuilder<T> {
 
     // 获取实际的构建器对象，不然不知道到底是哪个子类在实现
     // 很明显，需要子类去实现，返回的是当前类class
+
+    // ----->注意，上面说错了，并不是"返回当前类class"
+    // 而是，返回子类对象，并不是class类型哦
     protected abstract T getBuilderClassInstance();
 
     // 拼接"."
