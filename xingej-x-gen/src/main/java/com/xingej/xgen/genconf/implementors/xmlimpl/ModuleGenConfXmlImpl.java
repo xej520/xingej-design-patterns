@@ -11,7 +11,7 @@ import com.xingej.xgen.genconf.vo.ModuleConfModel;
  * 
  * @author erjun 2017年12月6日 下午9:32:47
  */
-public class ModuleGenConffXmlImpl implements ModuleGenConfImplementor {
+public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
     @Override
     public ModuleConfModel getBaseModuleConfModel(Map<String, String> param) {
