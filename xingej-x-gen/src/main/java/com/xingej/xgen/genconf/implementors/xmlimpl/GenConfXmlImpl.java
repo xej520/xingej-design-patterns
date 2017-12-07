@@ -37,7 +37,7 @@ public class GenConfXmlImpl implements GenConfImplementor {
 
     @Override
     public Map<String, String> getMapConstants() {
-        return null;
+        return readMapConstants();
     }
     /////////////////////////////////////////////////////////////////////////
 
@@ -176,8 +176,8 @@ public class GenConfXmlImpl implements GenConfImplementor {
         List<ThemeModel> retList = new ArrayList<>();
         Context context = getContext();
         
-        String[] ids = null;
-        String[] locations = null;
+        String[] ids = parseThemeIds(context);
+        String[] locations = parseThemeLocations(context);
         
         for(int i = 0; i < ids.length; i++) {
             ThemeModel tm = new ThemeModel();
@@ -196,8 +196,32 @@ public class GenConfXmlImpl implements GenConfImplementor {
             retList.add(tm);
         }
         
-        
         return retList;
     }
+    
+    private String[] parseThemeIds(Context context) {
+        context.init();
+        
+        ReadXmlExpression re = ParserWithMemento.parseByMemento(new GenConfBuilder()
+                .addGenConf().addSeparator().addThemes()
+                .addSeparator().addTheme().addDollar().addDot().addId().addDollar().build()
+                );
+        
+        return re.interpret(context);
+    }
+    
+    private String[] parseThemeLocations(Context context) {
+        context.init();
+        
+        ReadXmlExpression re = ParserWithMemento.parseByMemento(
+                new GenConfBuilder()
+                .addGenConf().addSeparator().addThemes()
+                .addSeparator().addTheme().addDollar().build()
+                );
+        
+        return re.interpret(context);
+    }
+    
 
+    
 }
