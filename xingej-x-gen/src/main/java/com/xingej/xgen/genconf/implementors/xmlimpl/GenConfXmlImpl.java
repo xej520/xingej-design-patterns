@@ -175,53 +175,79 @@ public class GenConfXmlImpl implements GenConfImplementor {
 
         List<ThemeModel> retList = new ArrayList<>();
         Context context = getContext();
-        
+
         String[] ids = parseThemeIds(context);
         String[] locations = parseThemeLocations(context);
-        
-        for(int i = 0; i < ids.length; i++) {
+
+        for (int i = 0; i < ids.length; i++) {
             ThemeModel tm = new ThemeModel();
             ThemeImplementer themeImpl = new ThemeXmlImpl();
-            
+
             Map<String, String> params = new HashMap<>();
             // ""+ThemeEnum.Location 就是为了，将ThemeEnum.Location 转换成字符串
-            params.put(""+ThemeEnum.Location, locations[i]);
-            
+            params.put("" + ThemeEnum.Location, locations[i]);
+
             tm.setId(ids[i]);
             tm.setLocation(locations[i]);
             tm.setMapGenOutTypes(themeImpl.getMapGenOutTypes(ids[i], params));
             tm.setMapGenTypes(themeImpl.getMapGenTypes(ids[i], params));
             tm.setMapProviders(themeImpl.getMapProviders(ids[i], params));
-            
+
             retList.add(tm);
         }
-        
+
         return retList;
     }
-    
+
     private String[] parseThemeIds(Context context) {
         context.init();
-        
-        ReadXmlExpression re = ParserWithMemento.parseByMemento(new GenConfBuilder()
-                .addGenConf().addSeparator().addThemes()
-                .addSeparator().addTheme().addDollar().addDot().addId().addDollar().build()
-                );
-        
+
+        ReadXmlExpression re = ParserWithMemento.parseByMemento(new GenConfBuilder().addGenConf().addSeparator()
+                .addThemes().addSeparator().addTheme().addDollar().addDot().addId().addDollar().build());
+
         return re.interpret(context);
     }
-    
+
     private String[] parseThemeLocations(Context context) {
         context.init();
-        
-        ReadXmlExpression re = ParserWithMemento.parseByMemento(
-                new GenConfBuilder()
-                .addGenConf().addSeparator().addThemes()
-                .addSeparator().addTheme().addDollar().build()
-                );
-        
+
+        ReadXmlExpression re = ParserWithMemento.parseByMemento(new GenConfBuilder().addGenConf().addSeparator()
+                .addThemes().addSeparator().addTheme().addDollar().build());
+
         return re.interpret(context);
     }
-    
 
-    
+    ///// ----------------------MapConstants------------------------////////////
+    private Map<String, String> readMapConstants() {
+        Map<String, String> map = new HashMap<>();
+        Context context = getContext();
+
+        String[] ids = parseConstantIds(context);
+        String[] values = parseConstantValues(context);
+
+        for (int i = 0; i < ids.length; i++) {
+            map.put(ids[i], values[i]);
+        }
+
+        return map;
+    }
+
+    private String[] parseConstantIds(Context context) {
+        context.init();
+
+        ReadXmlExpression re = ParserWithMemento.parseByMemento(new GenConfBuilder().addGenConf().addSeparator()
+                .addConstants().addSeparator().addConstant().addDollar().addDot().addDollar().build());
+
+        return re.interpret(context);
+    }
+
+    private String[] parseConstantValues(Context context) {
+        context.init();
+
+        ReadXmlExpression re = ParserWithMemento.parseByMemento(new GenConfBuilder().addGenConf().addSeparator()
+                .addConstants().addSeparator().addConstant().addDollar().build());
+
+        return re.interpret(context);
+    }
+
 }
