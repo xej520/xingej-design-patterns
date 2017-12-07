@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.xingej.xgen.genconf.constants.ThemeEnum;
 import com.xingej.xgen.genconf.implementors.GenConfImplementor;
+import com.xingej.xgen.genconf.implementors.ThemeImplementer;
 import com.xingej.xgen.genconf.vo.NeedGenModel;
 import com.xingej.xgen.genconf.vo.ThemeModel;
 import com.xingej.xgen.util.readxml.Context;
@@ -30,7 +32,7 @@ public class GenConfXmlImpl implements GenConfImplementor {
 
     @Override
     public List<ThemeModel> getThemeo() {
-        return null;
+        return readThemes();
     }
 
     @Override
@@ -59,6 +61,7 @@ public class GenConfXmlImpl implements GenConfImplementor {
         return context;
     }
 
+    ///// ----------------------NeedGends------------------------////////////
     private List<NeedGenModel> readNeedGends() {
 
         List<NeedGenModel> retList = new ArrayList<>();
@@ -94,130 +97,107 @@ public class GenConfXmlImpl implements GenConfImplementor {
 
         return retList;
     }
-    
+
     private String[] parseNeedGenIds(Context context) {
         context.init();
-        
-        //拼接下面的字符串
+
+        // 拼接下面的字符串
         // genconf/needgens/needgen$.id$
         ReadXmlExpression re = ParserWithMemento.parseByMemento(
-                
-                new GenConfBuilder()
-                .addGenConf()
-                .addSeparator()
-                .addNeedGens()
-                .addSeparator()
-                .addNeedGen()
-                .addDollar()
-                .addDot()
-                .addId()
-                .addDollar()
-                .build());
-        
+
+                new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar()
+                        .addDot().addId().addDollar().build());
+
         return re.interpret(context);
     }
-    
+
     private String[] parseNeedGenProviderss(Context context) {
         context.init();
-        
-        //拼接下面的字符串
+
+        // 拼接下面的字符串
         // genconf/needgens/needgen$.id$
         ReadXmlExpression re = ParserWithMemento.parseByMemento(
-                
-                new GenConfBuilder()
-                .addGenConf()
-                .addSeparator()
-                .addNeedGens()
-                .addSeparator()
-                .addNeedGen()
-                .addDollar()
-                .addDot()
-                .addProvider()
-                .addDollar()
-                .build());
-        
+
+                new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar()
+                        .addDot().addProvider().addDollar().build());
+
         return re.interpret(context);
     }
+
     private String[] parseNeedGenThemes(Context context) {
         context.init();
-        
-        //拼接下面的字符串
+
+        // 拼接下面的字符串
         // genconf/needgens/needgen$.id$
         ReadXmlExpression re = ParserWithMemento.parseByMemento(
-                
-                new GenConfBuilder()
-                .addGenConf()
-                .addSeparator()
-                .addNeedGens()
-                .addSeparator()
-                .addNeedGen()
-                .addDollar()
-                .addDot()
-                .addThemeId()
-                .addDollar()
-                .build());
-        
+
+                new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar()
+                        .addDot().addThemeId().addDollar().build());
+
         return re.interpret(context);
     }
-    
-    
+
     private String[] parseParamIds(Context context, String needGenId) {
         context.init();
-        
-        //拼接下面的字符串
-   
+
+        // 拼接下面的字符串
+
         ReadXmlExpression re = ParserWithMemento.parseByMemento(
-                
-                new GenConfBuilder()
-                .addGenConf()
-                .addSeparator()
-                .addNeedGens()
-                .addSeparator()
-                .addNeedGen()
-                .addDollar()
-                //添加参数
-                .addOpenBracket().addId().addEqual().addOtherValue(needGenId).addCloseBracket()
-                .addSeparator().addParams().addDollar().addSeparator().addParam().addDollar()
-                .addDot()
-                .addId()
-                .addDollar()
-                .build());
-        
+
+                new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar()
+                        // 添加参数
+                        .addOpenBracket().addId().addEqual().addOtherValue(needGenId).addCloseBracket().addSeparator()
+                        .addParams().addDollar().addSeparator().addParam().addDollar().addDot().addId().addDollar()
+                        .build());
+
         return re.interpret(context);
     }
-    
+
     private String[] parseParamValues(Context context, String needGenId) {
         context.init();
-        
-        //拼接下面的字符串
-   
+
+        // 拼接下面的字符串
+
         ReadXmlExpression re = ParserWithMemento.parseByMemento(
-                
-                new GenConfBuilder()
-                .addGenConf()
-                .addSeparator()
-                .addNeedGens()
-                .addSeparator()
-                .addNeedGen()
-                .addDollar()
-                //添加参数
-                .addOpenBracket().addId().addEqual().addOtherValue(needGenId).addCloseBracket()
-                .addSeparator().addParams().addDollar().addSeparator().addParam().addDollar()
-         
-                .build());
-        
+
+                new GenConfBuilder().addGenConf().addSeparator().addNeedGens().addSeparator().addNeedGen().addDollar()
+                        // 添加参数
+                        .addOpenBracket().addId().addEqual().addOtherValue(needGenId).addCloseBracket().addSeparator()
+                        .addParams().addDollar().addSeparator().addParam().addDollar()
+
+                        .build());
+
         return re.interpret(context);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    ///// ----------------------Themes------------------------////////////
+    private List<ThemeModel> readThemes() {
+
+        List<ThemeModel> retList = new ArrayList<>();
+        Context context = getContext();
+        
+        String[] ids = null;
+        String[] locations = null;
+        
+        for(int i = 0; i < ids.length; i++) {
+            ThemeModel tm = new ThemeModel();
+            ThemeImplementer themeImpl = new ThemeXmlImpl();
+            
+            Map<String, String> params = new HashMap<>();
+            // ""+ThemeEnum.Location 就是为了，将ThemeEnum.Location 转换成字符串
+            params.put(""+ThemeEnum.Location, locations[i]);
+            
+            tm.setId(ids[i]);
+            tm.setLocation(locations[i]);
+            tm.setMapGenOutTypes(themeImpl.getMapGenOutTypes(ids[i], params));
+            tm.setMapGenTypes(themeImpl.getMapGenTypes(ids[i], params));
+            tm.setMapProviders(themeImpl.getMapProviders(ids[i], params));
+            
+            retList.add(tm);
+        }
+        
+        
+        return retList;
+    }
+
 }
