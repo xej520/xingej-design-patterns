@@ -57,7 +57,7 @@ public class Context {
         this.parentEles = parentEles;
     }
 
-    private void init() {
+    public void init() {
         parentEles = new ArrayList<>();
     }
 
