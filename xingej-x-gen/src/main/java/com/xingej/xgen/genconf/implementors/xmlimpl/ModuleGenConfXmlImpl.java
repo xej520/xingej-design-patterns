@@ -117,7 +117,7 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
         Map<String, ExtendConfModel> map = new HashMap<>();
 
         String[] extendIds = parseExtendIds(this.getContext(param));
-        String[] isSingles = null;
+        String[] isSingles = parseIsSingles(this.getContext(param));
         String[] values = null;
 
         for (int i = 0; i < extendIds.length; i++) {
@@ -142,6 +142,16 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
         ReadXmlExpression re = Parser.parse(new ModuleGenConfBuilder().addModuleGenConf().addSeparator()
                 .addExtendConfs().addSeparator().addExtendConf().addDollar().addDot().addId().addDollar().build());
+
+        return re.interpret(context);
+    }
+
+    private String[] parseIsSingles(Context context) {
+        context.init();
+
+        ReadXmlExpression re = Parser
+                .parse(new ModuleGenConfBuilder().addModuleGenConf().addSeparator().addExtendConfs().addSeparator()
+                        .addExtendConf().addDollar().addDot().addIsSingle().addDollar().build());
 
         return re.interpret(context);
     }
