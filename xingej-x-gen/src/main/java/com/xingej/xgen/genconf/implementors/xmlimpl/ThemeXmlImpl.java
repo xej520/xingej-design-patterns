@@ -1,5 +1,6 @@
 package com.xingej.xgen.genconf.implementors.xmlimpl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.xingej.xgen.genconf.constants.ExpressionEnum;
@@ -16,7 +17,32 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
     @Override
     public Map<String, GenTypeModel> getMapGenTypes(String themeId, Map<String, String> params) {
-        return null;
+        Map<String, GenTypeModel> map = new HashMap<>();
+
+        String[] genTypeIds = null;
+        String[] genTypeValues = null;
+
+        for (int i = 0; i < genTypeIds.length; i++) {
+            GenTypeModel gtm = new GenTypeModel();
+
+            gtm.setGenTypeClass(genTypeValues[i]);
+            gtm.setId(genTypeIds[i]);
+
+            String[] paramIds = null;
+            String[] paramValues = null;
+
+            Map<String, String> paramMap = new HashMap<>();
+            for (int j = 0; j < paramIds.length; j++) {
+                paramMap.put(paramIds[i], paramValues[i]);
+            }
+
+            gtm.setMapParams(paramMap);
+
+            map.put(gtm.getId(), gtm);
+
+        }
+
+        return map;
     }
 
     @Override
