@@ -1,5 +1,7 @@
 package com.xingej.xgen.genconf.implementors.xmlimpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +31,7 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
     @Override
     public Map<String, List<String>> getMapNeedGenTypes(Map<String, String> param) {
-        return null;
+        return this.parseNeedGenTypes(this.getContext(param));
     }
 
     @Override
@@ -69,6 +71,43 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
         mcm.setModuleId(ss[0]);
 
+    }
+
+    ////// ---------------------MapNeedGenTypes---------------------------
+
+    private Map<String, List<String>> parseNeedGenTypes(Context context) {
+
+        context.init();
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        ReadXmlExpression re = Parser.parse(new ModuleGenConfBuilder().addModuleGenConf().addSeparator()
+                .addNeedGenTypes().addSeparator().addNeedGenType().addDollar().addDot().addId().addDollar().build());
+        String[] needGenTypes = re.interpret(context);
+
+        for (String needGenId : needGenTypes) {
+            map.put(needGenId, parseNeedGenOutTypes(context, needGenId));
+        }
+
+        return map;
+    }
+
+    private List<String> parseNeedGenOutTypes(Context context, String needGenId) {
+        context.init();
+        List<String> list = new ArrayList<>();
+
+        ReadXmlExpression re = Parser.parse(new ModuleGenConfBuilder().addModuleGenConf().addSeparator()
+                .addNeedGenTypes().addSeparator().addNeedGenType().addDollar().addOpenBracket().addId().addEqual()
+                .addOtherValue(needGenId).addCloseBracket().addSeparator().addNeedGenOutType().addDollar().addDot()
+                .addId().addDollar().build());
+
+        String[] ss = re.interpret(context);
+
+        for (String s : ss) {
+            list.add(s);
+        }
+
+        return list;
     }
 
 }
