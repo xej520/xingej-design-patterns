@@ -14,7 +14,9 @@ public enum ExpressionEnum {
     , xml("xml")
 
     // 这个是前缀
-    , xmlFilePre("/cn/javass/xgenconfxml/");
+    , xmlFilePre("/cn/javass/xgenconfxml/")
+
+    , themeXmlName("ThemeConf.xml");
 
     private String expr;
 
