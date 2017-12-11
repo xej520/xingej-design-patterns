@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.xingej.xgen.genconf.constants.ExpressionEnum;
 import com.xingej.xgen.genconf.constants.ModuleGenConfEnum;
 import com.xingej.xgen.genconf.implementors.ModuleGenConfImplementor;
 import com.xingej.xgen.genconf.vo.ExtendConfModel;
@@ -36,7 +37,7 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
     @Override
     public Map<String, ExtendConfModel> getMapExtends(Map<String, String> param) {
-        return null;
+        return parseMapExtends();
     }
 
     ////// ---------------------Context---------------------------
@@ -108,6 +109,32 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
         }
 
         return list;
+    }
+
+    ////// ---------------------MapExtends---------------------------
+
+    private Map<String, ExtendConfModel> parseMapExtends() {
+        Map<String, ExtendConfModel> map = new HashMap<>();
+
+        String[] extendIds = null;
+        String[] isSingles = null;
+        String[] values = null;
+
+        for (int i = 0; i < extendIds.length; i++) {
+            ExtendConfModel ecm = new ExtendConfModel();
+
+            ecm.setId(extendIds[i]);
+            ecm.setSingle(Boolean.parseBoolean(isSingles[i]));
+            ecm.setValue(values[i]);
+
+            if (!ecm.isSingle()) {
+                ecm.setValues(ecm.getValue().split(ExpressionEnum.comma.getExpr()));
+            }
+
+            map.put(ecm.getId(), ecm);
+        }
+
+        return map;
     }
 
 }
