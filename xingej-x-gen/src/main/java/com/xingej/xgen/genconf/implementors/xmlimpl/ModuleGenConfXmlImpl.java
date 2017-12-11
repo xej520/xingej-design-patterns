@@ -113,10 +113,10 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
     ////// ---------------------MapExtends---------------------------
 
-    private Map<String, ExtendConfModel> parseMapExtends() {
+    private Map<String, ExtendConfModel> parseMapExtends(Map<String, String> param) {
         Map<String, ExtendConfModel> map = new HashMap<>();
 
-        String[] extendIds = null;
+        String[] extendIds = parseExtendIds(this.getContext(param));
         String[] isSingles = null;
         String[] values = null;
 
@@ -135,6 +135,15 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
         }
 
         return map;
+    }
+
+    private String[] parseExtendIds(Context context) {
+        context.init();
+
+        ReadXmlExpression re = Parser.parse(new ModuleGenConfBuilder().addModuleGenConf().addSeparator()
+                .addExtendConfs().addSeparator().addExtendConf().addDollar().addDot().addId().addDollar().build());
+
+        return re.interpret(context);
     }
 
 }
