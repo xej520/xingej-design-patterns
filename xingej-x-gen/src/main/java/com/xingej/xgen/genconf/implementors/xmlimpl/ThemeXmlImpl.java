@@ -8,6 +8,8 @@ import com.xingej.xgen.genconf.constants.ThemeEnum;
 import com.xingej.xgen.genconf.implementors.ThemeImplementer;
 import com.xingej.xgen.genconf.vo.GenTypeModel;
 import com.xingej.xgen.util.readxml.Context;
+import com.xingej.xgen.util.readxml.Parser;
+import com.xingej.xgen.util.readxml.ReadXmlExpression;
 
 /**
  * 
@@ -19,7 +21,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
     public Map<String, GenTypeModel> getMapGenTypes(String themeId, Map<String, String> params) {
         Map<String, GenTypeModel> map = new HashMap<>();
 
-        String[] genTypeIds = null;
+        String[] genTypeIds = parseGenTypeIds(this.getContext(params));
         String[] genTypeValues = null;
 
         for (int i = 0; i < genTypeIds.length; i++) {
@@ -76,4 +78,12 @@ public class ThemeXmlImpl implements ThemeImplementer {
         return context;
     }
 
+    //////////////////////////////////////////////////////////////
+    private String[] parseGenTypeIds(Context context) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenOutTypes().addSeparator()
+                .addGenOutType().addDollar().addDot().addId().addDollar().build());
+
+        return re.interpret(context);
+    }
 }
