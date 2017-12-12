@@ -49,7 +49,16 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
     @Override
     public Map<String, String> getMapGenOutTypes(String themeId, Map<String, String> params) {
-        return null;
+        Map<String, String> map = new HashMap<>();
+
+        String[] genOutTypeIds = null;
+        String[] genOutTypeValues = null;
+
+        for (int i = 0; i < genOutTypeIds.length; i++) {
+            map.put(genOutTypeIds[i], genOutTypeValues[i]);
+        }
+
+        return map;
     }
 
     @Override
@@ -113,5 +122,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
         return re.interpret(context);
     }
+
+    ////// ---------------------getMapGenOutTypes---------------------------
 
 }
