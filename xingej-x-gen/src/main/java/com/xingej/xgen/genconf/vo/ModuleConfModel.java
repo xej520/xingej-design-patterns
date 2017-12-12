@@ -53,4 +53,10 @@ public class ModuleConfModel {
         this.mapNeedGenTypes = mapNeedGenTypes;
     }
 
+    @Override
+    public String toString() {
+        return "ModuleConfModel [moduleId=" + moduleId + ", useTheme=" + useTheme + ", mapExtends=" + mapExtends
+                + ", mapNeedGenTypes=" + mapNeedGenTypes + "]";
+    }
+
 }

@@ -34,4 +34,9 @@ public class GenTypeModel {
         this.mapParams = mapParams;
     }
 
+    @Override
+    public String toString() {
+        return "GenTypeModel [id=" + id + ", genTypeClass=" + genTypeClass + ", mapParams=" + mapParams + "]";
+    }
+
 }

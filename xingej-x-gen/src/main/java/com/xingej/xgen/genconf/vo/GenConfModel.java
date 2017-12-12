@@ -52,4 +52,9 @@ public class GenConfModel {
         return new ThemeModel();
     }
 
+    @Override
+    public String toString() {
+        return "GenConfModel [needGens=" + needGens + ", themes=" + themes + ", mapContants=" + mapContants + "]";
+    }
+
 }

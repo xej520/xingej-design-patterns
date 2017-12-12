@@ -46,4 +46,10 @@ public class NeedGenModel {
         this.mapParams = mapParams;
     }
 
+    @Override
+    public String toString() {
+        return "NeedGenModel [id=" + id + ", provider=" + provider + ", theme=" + theme + ", mapParams=" + mapParams
+                + "]";
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.xingej.xgen.genconf.vo;
 
+import java.util.Arrays;
+
 /**
  * 针对的是：第二类用户需要生成的模块的配置数据
  * 
@@ -47,6 +49,12 @@ public class ExtendConfModel {
 
     public void setSingle(boolean isSingle) {
         this.isSingle = isSingle;
+    }
+
+    @Override
+    public String toString() {
+        return "ExtendConfModel [id=" + id + ", value=" + value + ", values=" + Arrays.toString(values) + ", isSingle="
+                + isSingle + "]";
     }
 
 }

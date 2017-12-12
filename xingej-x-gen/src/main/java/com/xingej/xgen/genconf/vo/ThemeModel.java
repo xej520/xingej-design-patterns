@@ -54,4 +54,10 @@ public class ThemeModel {
         this.mapProviders = mapProviders;
     }
 
+    @Override
+    public String toString() {
+        return "ThemeModel [id=" + id + ", location=" + location + ", mapGenTypes=" + mapGenTypes + ", mapGenOutTypes="
+                + mapGenOutTypes + ", mapProviders=" + mapProviders + "]";
+    }
+
 }
