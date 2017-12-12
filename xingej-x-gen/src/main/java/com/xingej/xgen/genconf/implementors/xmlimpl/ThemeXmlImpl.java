@@ -18,11 +18,11 @@ import com.xingej.xgen.util.readxml.ReadXmlExpression;
 public class ThemeXmlImpl implements ThemeImplementer {
 
     @Override
-    public Map<String, GenTypeModel> getMapGenTypes(String themeId, Map<String, String> params) {
+    public Map<String, GenTypeModel> getMapGenTypes(String themeId, Map<String, String> param) {
         Map<String, GenTypeModel> map = new HashMap<>();
 
-        String[] genTypeIds = parseGenTypeIds(this.getContext(params));
-        String[] genTypeValues = parseGenTypeValues(this.getContext(params));
+        String[] genTypeIds = parseGenTypeIds(this.getContext(param));
+        String[] genTypeValues = parseGenTypeValues(this.getContext(param));
 
         for (int i = 0; i < genTypeIds.length; i++) {
             GenTypeModel gtm = new GenTypeModel();
@@ -30,7 +30,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
             gtm.setGenTypeClass(genTypeValues[i]);
             gtm.setId(genTypeIds[i]);
 
-            String[] paramIds = null;
+            String[] paramIds = parseGenTypeParamIds(this.getContext(param), gtm.getId());
             String[] paramValues = null;
 
             Map<String, String> paramMap = new HashMap<>();
@@ -96,4 +96,12 @@ public class ThemeXmlImpl implements ThemeImplementer {
         return re.interpret(context);
     }
 
+    private String[] parseGenTypeParamIds(Context context, String genTypeId) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenTypes().addSeparator()
+                .addGenType().addDollar().addOpenBracket().addId().addEqual().addOtherValue(genTypeId).addCloseBracket()
+                .addSeparator().addParams().addSeparator().addParam().addDollar().addDot().addId().addDollar().build());
+
+        return re.interpret(context);
+    }
 }
