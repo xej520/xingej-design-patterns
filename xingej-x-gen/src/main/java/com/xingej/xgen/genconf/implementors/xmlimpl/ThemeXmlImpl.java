@@ -65,8 +65,8 @@ public class ThemeXmlImpl implements ThemeImplementer {
     public Map<String, String> getMapProviders(String themeId, Map<String, String> params) {
         Map<String, String> map = new HashMap<>();
 
-        String[] genProviderIds = null;
-        String[] genProviderValues = null;
+        String[] genProviderIds = parseProviderIds(this.getContext(params));
+        String[] genProviderValues = parseProviderValues(this.getContext(params));
 
         for (int i = 0; i < genProviderIds.length; i++) {
             map.put(genProviderIds[i], genProviderValues[i]);
@@ -145,6 +145,23 @@ public class ThemeXmlImpl implements ThemeImplementer {
         context.init();
         ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenOutTypes().addSeparator()
                 .addGenOutType().addDollar().addDot().addType().addDollar().build());
+
+        return re.interpret(context);
+    }
+
+    ////// ---------------------getMapProviders---------------------------
+    private String[] parseProviderIds(Context context) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addProviders().addSeparator()
+                .addProvider().addDollar().addDot().addId().addDollar().build());
+
+        return re.interpret(context);
+    }
+
+    private String[] parseProviderValues(Context context) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addProviders().addSeparator()
+                .addProvider().addDollar().addDot().addType().addDollar().build());
 
         return re.interpret(context);
     }
