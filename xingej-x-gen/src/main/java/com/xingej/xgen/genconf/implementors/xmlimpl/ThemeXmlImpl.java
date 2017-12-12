@@ -63,7 +63,16 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
     @Override
     public Map<String, String> getMapProviders(String themeId, Map<String, String> params) {
-        return null;
+        Map<String, String> map = new HashMap<>();
+
+        String[] genProviderIds = null;
+        String[] genProviderValues = null;
+
+        for (int i = 0; i < genProviderIds.length; i++) {
+            map.put(genProviderIds[i], genProviderValues[i]);
+        }
+
+        return map;
     }
 
     ////// ---------------------Context---------------------------
