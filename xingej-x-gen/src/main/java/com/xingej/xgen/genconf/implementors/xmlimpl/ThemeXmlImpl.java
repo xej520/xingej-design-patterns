@@ -31,7 +31,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
             gtm.setId(genTypeIds[i]);
 
             String[] paramIds = parseGenTypeParamIds(this.getContext(param), gtm.getId());
-            String[] paramValues = null;
+            String[] paramValues = parseGenTypeParamValues(this.getContext(param), gtm.getId());
 
             Map<String, String> paramMap = new HashMap<>();
             for (int j = 0; j < paramIds.length; j++) {
@@ -104,4 +104,14 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
         return re.interpret(context);
     }
+
+    private String[] parseGenTypeParamValues(Context context, String genTypeId) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenTypes().addSeparator()
+                .addGenType().addDollar().addOpenBracket().addId().addEqual().addOtherValue(genTypeId).addCloseBracket()
+                .addSeparator().addParams().addSeparator().addParam().addDollar().build());
+
+        return re.interpret(context);
+    }
+
 }
