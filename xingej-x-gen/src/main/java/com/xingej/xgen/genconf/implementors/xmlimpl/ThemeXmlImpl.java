@@ -51,7 +51,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
     public Map<String, String> getMapGenOutTypes(String themeId, Map<String, String> params) {
         Map<String, String> map = new HashMap<>();
 
-        String[] genOutTypeIds = null;
+        String[] genOutTypeIds = parseOutTypeIds(this.getContext(params));
         String[] genOutTypeValues = null;
 
         for (int i = 0; i < genOutTypeIds.length; i++) {
@@ -124,5 +124,11 @@ public class ThemeXmlImpl implements ThemeImplementer {
     }
 
     ////// ---------------------getMapGenOutTypes---------------------------
+    private String[] parseOutTypeIds(Context context) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenOutTypes().addSeparator()
+                .addGenOutType().addDollar().addDot().addId().addDollar().build());
 
+        return re.interpret(context);
+    }
 }
