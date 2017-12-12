@@ -22,7 +22,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
         Map<String, GenTypeModel> map = new HashMap<>();
 
         String[] genTypeIds = parseGenTypeIds(this.getContext(params));
-        String[] genTypeValues = null;
+        String[] genTypeValues = parseGenTypeValues(this.getContext(params));
 
         for (int i = 0; i < genTypeIds.length; i++) {
             GenTypeModel gtm = new GenTypeModel();
@@ -86,4 +86,14 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
         return re.interpret(context);
     }
+
+    // GenTypeValues 其实，对应的值是class类型
+    private String[] parseGenTypeValues(Context context) {
+        context.init();
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenOutTypes().addSeparator()
+                .addGenOutType().addDollar().addDot().addType().addDollar().build());
+
+        return re.interpret(context);
+    }
+
 }
