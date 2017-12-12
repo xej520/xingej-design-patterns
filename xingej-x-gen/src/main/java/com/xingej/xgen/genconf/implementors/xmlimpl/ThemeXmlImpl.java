@@ -90,8 +90,8 @@ public class ThemeXmlImpl implements ThemeImplementer {
     //////////////////////////////////////////////////////////////
     private String[] parseGenTypeIds(Context context) {
         context.init();
-        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenOutTypes().addSeparator()
-                .addGenOutType().addDollar().addDot().addId().addDollar().build());
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenTypes().addSeparator()
+                .addGenType().addDollar().addDot().addId().addDollar().build());
 
         return re.interpret(context);
     }
@@ -99,8 +99,8 @@ public class ThemeXmlImpl implements ThemeImplementer {
     // GenTypeValues 其实，对应的值是class类型
     private String[] parseGenTypeValues(Context context) {
         context.init();
-        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenOutTypes().addSeparator()
-                .addGenOutType().addDollar().addDot().addType().addDollar().build());
+        ReadXmlExpression re = Parser.parse(new ThemeBuilder().addTheme().addSeparator().addGenTypes().addSeparator()
+                .addGenType().addDollar().addDot().addType().addDollar().build());
 
         return re.interpret(context);
     }
