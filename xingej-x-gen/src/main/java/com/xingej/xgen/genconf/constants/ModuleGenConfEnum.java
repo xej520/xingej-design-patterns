@@ -6,5 +6,5 @@ package com.xingej.xgen.genconf.constants;
  * @author erjun 2017年12月11日 上午7:11:04
  */
 public enum ModuleGenConfEnum {
-    ModuleGenConf, NeedGenTypes, NeedGenType, id, NeedGenOutType, ExtendConfs, ExtendConf, isSingle, fileName;
+    ModuleGenConf, NeedGenTypes, NeedGenType, id, NeedGenOutType, ExtendConfs, ExtendConf, isSingle;
 }

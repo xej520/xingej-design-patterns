@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.xingej.xgen.genconf.constants.ThemeEnum;
+import com.xingej.xgen.genconf.constants.ExpressionEnum;
 import com.xingej.xgen.genconf.implementors.GenConfImplementor;
 import com.xingej.xgen.genconf.implementors.ThemeImplementer;
 import com.xingej.xgen.genconf.vo.NeedGenModel;
@@ -184,8 +184,8 @@ public class GenConfXmlImpl implements GenConfImplementor {
             ThemeImplementer themeImpl = new ThemeXmlImpl();
 
             Map<String, String> params = new HashMap<>();
-            // ""+ThemeEnum.Location 就是为了，将ThemeEnum.Location 转换成字符串
-            params.put("" + ThemeEnum.Location, locations[i]);
+
+            params.put(ExpressionEnum.location.getExpr(), locations[i]);
 
             tm.setId(ids[i]);
             tm.setLocation(locations[i]);

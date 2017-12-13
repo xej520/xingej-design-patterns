@@ -2,6 +2,10 @@ package com.xingej.xgen.util.readxml;
 
 import org.junit.Test;
 
+import com.xingej.xgen.genconf.GenConfEbi;
+import com.xingej.xgen.genconf.GenConfFactory;
+import com.xingej.xgen.genconf.implementors.xmlimpl.GenConfXmlImpl;
+
 /**
  * 
  * 1、表达式 ---->转换成---->抽象语法树----->由解析器去完成
@@ -202,6 +206,20 @@ public class InterpretTest {
         System.out.println("---->:\t" + ss[0]);
 
         System.out.println("---用时----:\t" + (endTime - startTime));
+    }
+
+    // 加入生成器模式，测试
+    @Test
+    public void testBy2() throws Exception {
+
+        GenConfEbi ebi = GenConfFactory.createGenConfEbi(new GenConfXmlImpl());
+
+        System.out.println("---->:\t" + ebi.getGenConf());
+
+        System.out.println("-------------------------------------");
+
+        System.out.println("---->:\t" + ebi.getMapModuleConf());
+
     }
 
 }

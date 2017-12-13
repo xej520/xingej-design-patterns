@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.xingej.xgen.genconf.constants.ExpressionEnum;
-import com.xingej.xgen.genconf.constants.ModuleGenConfEnum;
 import com.xingej.xgen.genconf.implementors.ModuleGenConfImplementor;
 import com.xingej.xgen.genconf.vo.ExtendConfModel;
 import com.xingej.xgen.genconf.vo.ModuleConfModel;
@@ -52,8 +51,8 @@ public class ModuleGenConfXmlImpl implements ModuleGenConfImplementor {
 
             // 下面使用builder进行拼接
             // 也就是buildder模式
-            context = Context.getInstance(
-                    new GenConfBuilder().addXmlFilePre().addOtherValue(param.get(ModuleGenConfEnum.fileName)).build());
+            context = Context.getInstance(new GenConfBuilder().addXmlFilePre()
+                    .addOtherValue(param.get(ExpressionEnum.fileName.getExpr())).build());
 
         } catch (Exception e) {
             e.printStackTrace();

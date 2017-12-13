@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.xingej.xgen.genconf.constants.ExpressionEnum;
-import com.xingej.xgen.genconf.constants.ThemeEnum;
 import com.xingej.xgen.genconf.implementors.ThemeImplementer;
 import com.xingej.xgen.genconf.vo.GenTypeModel;
 import com.xingej.xgen.util.readxml.Context;
@@ -35,7 +34,7 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
             Map<String, String> paramMap = new HashMap<>();
             for (int j = 0; j < paramIds.length; j++) {
-                paramMap.put(paramIds[i], paramValues[i]);
+                paramMap.put(paramIds[j], paramValues[j]);
             }
 
             gtm.setMapParams(paramMap);
@@ -87,7 +86,9 @@ public class ThemeXmlImpl implements ThemeImplementer {
 
             // 下面使用builder进行拼接
             // 也就是buildder模式
-            context = Context.getInstance(param.get(ThemeEnum.Location) + ExpressionEnum.themeXmlName.getExpr());
+            context = Context
+                    .getInstance(param.get(ExpressionEnum.location.getExpr() + ExpressionEnum.separator.getExpr())
+                            + ExpressionEnum.themeXmlName.getExpr());
 
         } catch (Exception e) {
             e.printStackTrace();
