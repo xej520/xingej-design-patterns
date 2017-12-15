@@ -33,4 +33,18 @@ public class SimpleFactoryTest1 {
 
     }
 
+    // ---------高级工厂-----验证软件是否具有扩展性-------
+    @Test
+    public void testByHighChartFactory() {
+        // 客户端，调用方，不关心具体的创建过程
+        // 只需要知道，
+        // 工厂
+        // 对象的名字
+        // 就可以了
+        Chart chart = HighChartFactory.getChart("histogram");
+
+        chart.display();
+
+    }
+
 }
