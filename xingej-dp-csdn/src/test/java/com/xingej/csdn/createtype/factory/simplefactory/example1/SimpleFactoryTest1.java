@@ -47,4 +47,17 @@ public class SimpleFactoryTest1 {
 
     }
 
+    // ---------通过配置文件形式-------
+    // 不需要修改任何代码，
+    // 只需要更新配置文件，就可以了
+    // 如果只是更新配置文件，就不称为是修改源代码哦
+    @Test
+    public void testByXML() {
+        // 调用者，仅仅 知道工厂角色就可以了
+        Chart chart = HighChartFactory.getChart();
+
+        chart.display();
+
+    }
+
 }
