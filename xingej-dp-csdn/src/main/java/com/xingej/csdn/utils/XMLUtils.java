@@ -15,19 +15,32 @@ import org.w3c.dom.NodeList;
  * @author erjun 2017年12月16日 上午6:35:59
  */
 public class XMLUtils {
-    // 该方法用于从XML配置文件中提取图表类型，并返回类型名
-    public static String getChartType() {
+
+    private static DocumentBuilderFactory dFactory;
+
+    private static DocumentBuilder builder;
+
+    private static Document doc;
+
+    static {
+        // 创建文档对象
+        dFactory = DocumentBuilderFactory.newInstance();
         try {
-            // 创建文档对象
-            DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
+            builder = dFactory.newDocumentBuilder();
 
-            DocumentBuilder builder = dFactory.newDocumentBuilder();
-
-            Document doc = builder.parse(
+            doc = builder.parse(
                     // 通过反射的方式来读取配置文件
                     // 当然，也可用通过new File("/src/main/resources/config.xml");
                     // 必须包含的是 绝对路径哦
                     Class.forName("com.xingej.csdn.utils.XMLUtils").getClassLoader().getResourceAsStream("config.xml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 该方法用于从XML配置文件中提取图表类型，并返回类型名
+    public static String getChartType() {
+        try {
 
             // 获取包含图表类型的文本节点
             NodeList nl = doc.getElementsByTagName("chartType");
