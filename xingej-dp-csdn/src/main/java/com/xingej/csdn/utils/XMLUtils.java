@@ -40,19 +40,30 @@ public class XMLUtils {
 
     // 该方法用于从XML配置文件中提取图表类型，并返回类型名
     public static String getChartType() {
-        try {
 
-            // 获取包含图表类型的文本节点
-            NodeList nl = doc.getElementsByTagName("chartType");
+        // 获取包含图表类型的文本节点
+        NodeList nl = doc.getElementsByTagName("chartType");
 
-            Node classNode = nl.item(0).getFirstChild();
+        Node classNode = nl.item(0).getFirstChild();
 
-            String chartType = classNode.getNodeValue().trim();
+        String chartType = classNode.getNodeValue().trim();
 
-            return chartType;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return chartType;
+
     }
+
+    /**
+     * 工厂模式，
+     * 
+     * @return
+     */
+    public static String getClazz() {
+        NodeList n1 = doc.getElementsByTagName("factoryMethodPattenClass");
+
+        Node nodeName = n1.item(0).getFirstChild();
+        String clazzName = nodeName.getNodeValue().trim();
+
+        return clazzName;
+    }
+
 }
