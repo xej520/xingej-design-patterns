@@ -3,4 +3,6 @@
 	<chartType>histogram</chartType>
 	<!-- 工厂模式， -->
 	<factoryMethodPattenClass>FileLoggerFactory</factoryMethodPattenClass>
+	<!-- 行为模式  之 策略模式 -->
+	<stategrypattern>StudentDiscount</stategrypattern>
 </config>

@@ -66,4 +66,13 @@ public class XMLUtils {
         return clazzName;
     }
 
+    // 传入标签的名称，获取当前标签对应的值
+    public static String getName(String name) {
+        NodeList nodeList = doc.getElementsByTagName(name);
+
+        Node nodeName = nodeList.item(0).getFirstChild();
+
+        return nodeName.getNodeValue().trim();
+    }
+
 }
